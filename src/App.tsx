@@ -10,7 +10,7 @@ function App() {
   const [congressData, setCongressData] = useState<Congressperson[]>(
     [
       {
-        id: 12345,
+        id: 'hello',
         name: 'Rand Paul',
         title: 'Senator',
         party: 'Republican',
@@ -18,7 +18,7 @@ function App() {
         yearsServed: 11,
       },
       {
-        id: 12346,
+        id: 'hello2',
         name: 'Chuck Schumer',
         title: 'Senator',
         party: 'Democrat',

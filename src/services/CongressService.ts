@@ -4,12 +4,16 @@ import Congressperson from "../models/congressperson"
 const { CONGRESS_API_PATH } = process.env
 
 class CongressService {
-  http = axios.create({
-    baseURL: CONGRESS_API_PATH
-  })
+  // http = axios.create({
+  //   baseURL: 'http://localhost:8000/api' 
+  //   //CONGRESS_API_PATH
+  // })
 
   async getCongressData(chartData: ChartData) {
-    const response = await this.http.get<Congressperson[]>('/congress')
+    const response = await axios.get<Congressperson[]>(
+      'http://localhost:8000/api/congress',
+      {params: chartData}
+      )
     return response.data
   }
 }
