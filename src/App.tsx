@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import CongressChart from './components/CongressChart';
+import ChartData from './models/chartData';
+import Congressperson from './models/congressperson';
+import CongressService from './services/CongressService';
 
 function App() {
+
+  const [congressData, setCongressData] = useState<Congressperson[]>(
+    [
+      {
+        id: 12345,
+        name: 'Rand Paul',
+        title: 'Senator',
+        party: 'Republican',
+        state: 'Kentucky',
+        yearsServed: 11,
+      },
+      {
+        id: 12346,
+        name: 'Chuck Schumer',
+        title: 'Senator',
+        party: 'Democrat',
+        state: 'New York',
+        yearsServed: 23,
+      }
+    ]
+  )
+
+  const loadCongressData = async (chartData:ChartData) => {
+    const congressData = await CongressService.getCongressData(chartData)
+    setCongressData(congressData)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CongressChart congressData={congressData} loadCongressData={loadCongressData}/>
     </div>
   );
 }
