@@ -14,7 +14,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
 
   const [chartData, setChartData] = useState<ChartData>({
     currPage: 1,
-    limit: 20,
+    limit: 10,
     offset: 0,
     sortBy: 'name',
     filter: ''
@@ -44,7 +44,12 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
     setChartData({...chartData, limit: parseInt(value, 10)})
   }
   const handleFilterChange = (value: string) => {
-    setChartData({...chartData, filter: value})
+    setChartData({
+      ...chartData, 
+      filter: value,
+      currPage: 1,
+      offset: 0
+    })
   }
 
   return (
@@ -70,9 +75,9 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
           value={chartData.limit}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => handleLimitChange(e.target.value)}
           >
-          <option>20</option>
+          <option>10</option>
+          <option>25</option>
           <option>50</option>
-          <option>100</option>
         </select>
       </div>
       

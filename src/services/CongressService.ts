@@ -1,7 +1,7 @@
 import axios from "axios"
 import ChartData from "../models/chartData"
 import Congressperson from "../models/congressperson"
-const { CONGRESS_API_PATH } = process.env
+import {stringify} from 'query-string'
 
 class CongressService {
   // http = axios.create({
@@ -10,10 +10,9 @@ class CongressService {
   // })
 
   async getCongressData(chartData: ChartData) {
-    const response = await axios.get<Congressperson[]>(
-      'http://localhost:8000/api/congress',
-      {params: chartData}
-      )
+    let url: string = `http://localhost:8000/api/congress?${stringify(chartData)}`
+    console.log(url)
+    const response = await axios.get<Congressperson[]>(url)
     return response.data
   }
 }
