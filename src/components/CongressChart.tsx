@@ -29,7 +29,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
       setChartData({
         ...chartData, 
         currPage: chartData.currPage + 1,
-        offset: chartData.currPage * chartData.limit
+        offset: (chartData.currPage) * chartData.limit
       })
   }
   const prevPage  = () => {
@@ -37,7 +37,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
       setChartData({
         ...chartData, 
         currPage: chartData.currPage - 1,
-        offset: chartData.currPage * chartData.limit
+        offset: (chartData.currPage - 2) * chartData.limit
       })
   }
   const handleLimitChange = (value: string) => {

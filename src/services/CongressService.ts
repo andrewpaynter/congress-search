@@ -4,11 +4,6 @@ import Congressperson from "../models/congressperson"
 import {stringify} from 'query-string'
 
 class CongressService {
-  // http = axios.create({
-  //   baseURL: 'http://localhost:8000/api' 
-  //   //CONGRESS_API_PATH
-  // })
-
   async getCongressData(chartData: ChartData) {
     let url: string = `http://localhost:8000/api/congress?${stringify(chartData)}`
     console.log(url)
