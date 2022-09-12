@@ -21,7 +21,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
 
   useEffect(() => {
     loadCongressData(chartData)
-  }, [chartData.currPage, chartData.limit, chartData.sortBy])
+  }, [chartData.currPage, chartData.limit, chartData.sortBy, chartData.sortReverse])
 
   const nextPage  = () => {
     if (true /*LOGIC TO CHECK IF THERE ARE MORE RESULTS*/)
@@ -53,12 +53,20 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
     })
   }
   const handleSortClick = (sortBy: 'name' | 'title' | 'party' | 'state' | 'yearsServed') => {
-    setChartData({
-      ...chartData, 
-      sortBy,
-      currPage: 1,
-      offset: 0
-    })
+    if (chartData.sortBy === sortBy) {
+      setChartData({
+        ...chartData,
+        sortReverse: !chartData.sortReverse
+      })
+    } else {
+      setChartData({
+        ...chartData, 
+        sortBy,
+        sortReverse: false,
+        currPage: 1,
+        offset: 0
+      })
+    }
   }
 
   return (
