@@ -6,19 +6,9 @@ import Congressperson from './models/congressperson';
 import CongressService from './services/CongressService';
 
 function App() {
-
-  const [congressData, setCongressData] = useState<Congressperson[]>(
-    []
-  )
-
-  const loadCongressData = async (chartData:ChartData) => {
-    const congressData = await CongressService.getCongressData(chartData)
-    setCongressData(congressData)
-  }
-
   return (
     <div className="App">
-      <CongressChart congressData={congressData} loadCongressData={loadCongressData}/>
+      <CongressChart />
     </div>
   );
 }

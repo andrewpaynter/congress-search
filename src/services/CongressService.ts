@@ -4,10 +4,15 @@ import Congressperson from "../models/congressperson"
 import {stringify} from 'query-string'
 
 class CongressService {
+  finalPage: boolean
+
+  constructor() {
+    this.finalPage = false
+  }
   async getCongressData(chartData: ChartData) {
     let url: string = `http://localhost:8000/api/congress?${stringify(chartData)}`
-    console.log(url)
     const response = await axios.get<Congressperson[]>(url)
+    this.finalPage = response.headers.finalitem === 'true'
     return response.data
   }
 }

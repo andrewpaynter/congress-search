@@ -4,20 +4,21 @@ import Congressperson from '../models/congressperson'
 
 interface TableProps{
   congressData: Congressperson[],
-  handleSortClick: Function
+  handleSortClick: Function,
+  chartData: ChartData
 }
 
-export const Table = ({congressData, handleSortClick}: TableProps) => {
+export const Table = ({congressData, handleSortClick, chartData}: TableProps) => {
   return (
     <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto w-full'>
         <thead>
           <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-6 items-center'>
             <td></td>
-            <td onClick={() => handleSortClick('name')}>Name</td>
-            <td onClick={() => handleSortClick('party')}>Party</td>
-            <td onClick={() => handleSortClick('state')}>State</td>
-            <td onClick={() => handleSortClick('title')}>Title</td>
-            <td onClick={() => handleSortClick('yearsServed')}>Years Served</td>
+            <td onClick={() => handleSortClick('name')} className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>Name</td>
+            <td onClick={() => handleSortClick('party')} className={`hover:cursor-pointer ${chartData.sortBy === 'party' ? 'font-bold' : ''}`}>Party</td>
+            <td onClick={() => handleSortClick('state')} className={`hover:cursor-pointer ${chartData.sortBy === 'state' ? 'font-bold' : ''}`}>State</td>
+            <td onClick={() => handleSortClick('title')} className={`hover:cursor-pointer ${chartData.sortBy === 'title' ? 'font-bold' : ''}`}>Title</td>
+            <td onClick={() => handleSortClick('yearsServed')} className={`hover:cursor-pointer ${chartData.sortBy === 'yearsServed' ? 'font-bold' : ''}`}>Years Served</td>
           </tr>
         </thead>
         <tbody>
