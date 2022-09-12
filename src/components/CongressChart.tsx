@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react'
 import ChartData from '../models/chartData'
 import Congressperson from '../models/congressperson'
 import { Table } from './Table'
-import CongressService from '../services/CongressService'
-
 
 interface CongressChartProps{
   congressData: Congressperson[],
@@ -17,6 +15,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
     limit: 10,
     offset: 0,
     sortBy: 'name',
+    sortReverse: false,
     filter: ''
   })
 
@@ -41,7 +40,9 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
       })
   }
   const handleLimitChange = (value: string) => {
-    setChartData({...chartData, limit: parseInt(value, 10)})
+    setChartData({
+      ...chartData, 
+      limit: parseInt(value, 10)})
   }
   const handleFilterChange = (value: string) => {
     setChartData({
@@ -51,10 +52,18 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
       offset: 0
     })
   }
+  const handleSortClick = (sortBy: 'name' | 'title' | 'party' | 'state' | 'yearsServed') => {
+    setChartData({
+      ...chartData, 
+      sortBy,
+      currPage: 1,
+      offset: 0
+    })
+  }
 
   return (
-    <div className='mt-16'>
-      <div>
+    <div className='mt-16 w-3/5 flex flex-col mx-auto'>
+      <div className='justify-self-end'>
         <input
           className={`text-right py-2 rounded-md border-2 outline-0`}
           type='search'
@@ -65,7 +74,7 @@ function CongressChart({congressData, loadCongressData}: CongressChartProps) {
         />
         <button onClick={() => loadCongressData(chartData)}>Search</button>
       </div>
-      <Table congressData={congressData} chartData={chartData} setChartData={setChartData}/>
+      <Table congressData={congressData} handleSortClick={handleSortClick}/>
       <div className='mt-4'>
         {(chartData.currPage > 1) ? <button onClick={prevPage}>Back</button> : null}
         <button>{chartData.currPage}</button>

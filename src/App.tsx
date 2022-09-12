@@ -8,24 +8,7 @@ import CongressService from './services/CongressService';
 function App() {
 
   const [congressData, setCongressData] = useState<Congressperson[]>(
-    [
-      {
-        id: 'hello',
-        name: 'Rand Paul',
-        title: 'Senator',
-        party: 'Republican',
-        state: 'Kentucky',
-        yearsServed: 11,
-      },
-      {
-        id: 'hello2',
-        name: 'Chuck Schumer',
-        title: 'Senator',
-        party: 'Democrat',
-        state: 'New York',
-        yearsServed: 23,
-      }
-    ]
+    []
   )
 
   const loadCongressData = async (chartData:ChartData) => {

@@ -4,18 +4,12 @@ import Congressperson from '../models/congressperson'
 
 interface TableProps{
   congressData: Congressperson[],
-  chartData: ChartData,
-  setChartData: React.Dispatch<React.SetStateAction<ChartData>>
+  handleSortClick: Function
 }
 
-export const Table = ({congressData, chartData, setChartData}: TableProps) => {
-  
-  const handleSortClick = (by: keyof Congressperson) => {
-    setChartData({...chartData, sortBy: by})
-  }
-
+export const Table = ({congressData, handleSortClick}: TableProps) => {
   return (
-    <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto'>
+    <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto w-full'>
         <thead>
           <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-6 items-center'>
             <td></td>
@@ -29,7 +23,13 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
         <tbody>
           {congressData.map((cp: Congressperson) => 
           <tr className='p-4 border-b border-slate-200 grid grid-cols-6 items-center' key={cp.id}>
-            <td>photo</td>
+            <td>
+              <img 
+              src= {`http://localhost:8000/api/img/${cp.id}`}
+              alt={cp.name}
+              className='h-32'
+              />
+              </td>
             <td>{cp.name}</td>
             <td>{cp.party}</td>
             <td>{cp.state}</td>
