@@ -4,11 +4,31 @@ import Congressperson from '../models/congressperson'
 
 interface TableProps{
   congressData: Congressperson[],
-  handleSortClick: Function,
-  chartData: ChartData
+  chartData: ChartData,
+  setChartData: React.Dispatch<React.SetStateAction<ChartData>>
 }
 
-export const Table = ({congressData, handleSortClick, chartData}: TableProps) => {
+export const Table = ({congressData, chartData, setChartData}: TableProps) => {
+
+  const handleSortClick = (sortBy: 'name' | 'title' | 'party' | 'state' | 'yearsServed') => {
+    if (chartData.sortBy === sortBy) {
+      setChartData({
+        ...chartData,
+        sortReverse: !chartData.sortReverse,
+        currPage: 1,
+        offset: 0
+      })
+    } else {
+      setChartData({
+        ...chartData, 
+        sortBy,
+        sortReverse: false,
+        currPage: 1,
+        offset: 0
+      })
+    }
+  }
+
   return (
     <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto w-full'>
         <thead>
