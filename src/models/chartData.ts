@@ -1,5 +1,3 @@
-import Congressperson from "./congressperson";
-
 export default interface ChartData {
   currPage: number,
   limit: number,
