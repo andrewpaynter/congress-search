@@ -8,7 +8,6 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({loadCongressData, chartData, setChartData}:SearchBarProps) => {
-
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
       event.preventDefault()
@@ -35,7 +34,11 @@ const SearchBar = ({loadCongressData, chartData, setChartData}:SearchBarProps) =
       name='filter'
       value={chartData.filter}
     />
-    <button className='bg-slate-300 p-2 rounded-md h-full hover:bg-blue-300' onClick={() => loadCongressData(chartData)}>Search</button>
+    <button 
+      className='bg-slate-300 p-2 rounded-md h-full hover:bg-blue-300' 
+      onClick={() => loadCongressData(chartData)}>
+      Search
+    </button>
   </div> );
 };
 

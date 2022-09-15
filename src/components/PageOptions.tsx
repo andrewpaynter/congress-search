@@ -41,9 +41,19 @@ const PageOptions = ({chartData, setChartData, CongressService}:SearchBarProps) 
           <option>50</option>
         </select>
         <div className='flex items-center'>
-          {(chartData.currPage > 1) ? <button className='bg-slate-200 p-2 rounded-md h-full hover:bg-blue-300 mr-2' onClick={prevPage}>Back</button> : null}
+          {(chartData.currPage > 1) ? 
+            <button 
+              className='bg-slate-200 p-2 rounded-md h-full hover:bg-blue-300 mr-2' 
+              onClick={prevPage} >
+            Back
+            </button> : null}
           <h2 className='mr-2 text-2xl'>{chartData.currPage}</h2>
-          {!CongressService.finalPage ? <button className='bg-slate-200 p-2 rounded-md h-full hover:bg-blue-300' onClick={nextPage}>Next</button> : null}
+          {!CongressService.finalPage ? 
+          <button 
+            className='bg-slate-200 p-2 rounded-md h-full hover:bg-blue-300' 
+            onClick={nextPage}>
+          Next
+          </button> : null}
         </div>
       </div>
   );
