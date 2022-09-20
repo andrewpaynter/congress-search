@@ -16,6 +16,8 @@ function CongressChart() {
     sortReverse: false,
     filter: ''
   })
+
+  const [congressDataPages, setCongressDataPages] = useState<Congressperson[][]>([])
   
   const [congressData, setCongressData] = useState<Congressperson[]>(
     []
@@ -24,11 +26,27 @@ function CongressChart() {
   const loadCongressData = async () => {
     const congressData = await CongressService.getCongressData(chartData)
     setCongressData(congressData)
+    if(!congressDataPages[chartData.currPage]) {
+      setCongressDataPages(prevCDP => {
+        let prev = [...prevCDP]
+        prev[chartData.currPage] = [...congressData]
+        return prev
+      })
+    }
   }
 
   useEffect(() => {
+    setCongressDataPages([])
     loadCongressData()
-  }, [chartData.currPage, chartData.limit, chartData.sortBy, chartData.sortReverse])
+  }, [chartData.limit, chartData.sortBy, chartData.sortReverse])
+
+  useEffect(() => {
+    if (congressDataPages[chartData.currPage]) {
+      setCongressData([...congressDataPages[chartData.currPage]])
+    } else {
+      loadCongressData()
+    }
+  }, [chartData.currPage])
 
   return (
     <div className='my-16 w-3/5 flex flex-col mx-auto'>
