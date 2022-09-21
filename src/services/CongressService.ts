@@ -10,7 +10,7 @@ class CongressService {
     this.finalPage = false
   }
   async getCongressData(chartData: ChartData) {
-    let url: string = `http://www.congress-searcher-api.herokuapp.com/24079/api/congress?${stringify(chartData)}`
+    let url: string = `https://congress-searcher-api.herokuapp.com/api/congress?${stringify(chartData)}`
     const response = await axios.get<Congressperson[]>(url)
     this.finalPage = response.headers.finalitem === 'true'
     return response.data
