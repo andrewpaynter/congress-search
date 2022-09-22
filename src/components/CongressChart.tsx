@@ -49,7 +49,7 @@ function CongressChart() {
   }, [chartData.currPage])
 
   return (
-    <div className='my-16 w-3/5 flex flex-col mx-auto'>
+    <div className='my-16 w-4/5 md:w-3/5 flex flex-col mx-auto'>
       <SearchBar loadCongressData={loadCongressData} chartData={chartData} setChartData={setChartData} />
       <Table congressData={congressData} setChartData={setChartData} chartData={chartData}/>
       <PageOptions chartData={chartData} setChartData = {setChartData} CongressService={CongressService}/>
