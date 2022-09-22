@@ -37,25 +37,37 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
             <td onClick={() => handleSortClick('name')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>
               Name
-              <span className={`${true ? 'hidden' : ''}`}>
-                {true ? '▼' : '▲'}
+              <span className={`${chartData.sortBy === 'name' ? '' : 'hidden'}`}>
+                {chartData.sortReverse ? '▲' : '▼'}
               </span>
             </td>
             <td onClick={() => handleSortClick('party')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'party' ? 'font-bold' : ''}`}>
               Party
+              <span className={`${chartData.sortBy === 'party' ? '' : 'hidden'}`}>
+                {chartData.sortReverse ? '▲' : '▼'}
+              </span>
             </td>
             <td onClick={() => handleSortClick('state')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'state' ? 'font-bold' : ''}`}>
               State
+              <span className={`${chartData.sortBy === 'state' ? '' : 'hidden'}`}>
+                {chartData.sortReverse ? '▲' : '▼'}
+              </span>
             </td>
             <td onClick={() => handleSortClick('title')} 
               className={`hidden md:block hover:cursor-pointer ${chartData.sortBy === 'title' ? 'font-bold' : ''}`}>
               Title
+              <span className={`${chartData.sortBy === 'title' ? '' : 'hidden'}`}>
+                {chartData.sortReverse ? '▲' : '▼'}
+              </span>
             </td>
             <td onClick={() => handleSortClick('yearsServed')} 
               className={`hidden lg:block hover:cursor-pointer ${chartData.sortBy === 'yearsServed' ? 'font-bold' : ''}`}>
               Years Served
+              <span className={`${chartData.sortBy === 'yearsServed' ? '' : 'hidden'}`}>
+                {chartData.sortReverse ? '▲' : '▼'}
+              </span>
             </td>
           </tr>
         </thead>
