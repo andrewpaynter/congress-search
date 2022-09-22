@@ -37,6 +37,9 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
             <td onClick={() => handleSortClick('name')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>
               Name
+              <span className={`${true ? 'hidden' : ''}`}>
+                {true ? '▼' : '▲'}
+              </span>
             </td>
             <td onClick={() => handleSortClick('party')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'party' ? 'font-bold' : ''}`}>
@@ -58,7 +61,7 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
         </thead>
         <tbody>
           {congressData.map((cp: Congressperson) => 
-          <tr className='p-4 border-b border-slate-200 grid grid-cols-6 items-center' key={cp.id}>
+          <tr className='p-4 border-b border-slate-200 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 items-center' key={cp.id}>
             <td>
               <img 
               src= {`https://congress-searcher-api.herokuapp.com/api/img/${cp.id}`}
