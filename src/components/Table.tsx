@@ -32,13 +32,28 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
   return (
     <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto w-full'>
         <thead>
-          <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-6 items-center'>
-            <td></td>
-            <td onClick={() => handleSortClick('name')} className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>Name</td>
-            <td onClick={() => handleSortClick('party')} className={`hover:cursor-pointer ${chartData.sortBy === 'party' ? 'font-bold' : ''}`}>Party</td>
-            <td onClick={() => handleSortClick('state')} className={`hover:cursor-pointer ${chartData.sortBy === 'state' ? 'font-bold' : ''}`}>State</td>
-            <td onClick={() => handleSortClick('title')} className={`hover:cursor-pointer ${chartData.sortBy === 'title' ? 'font-bold' : ''}`}>Title</td>
-            <td onClick={() => handleSortClick('yearsServed')} className={`hover:cursor-pointer ${chartData.sortBy === 'yearsServed' ? 'font-bold' : ''}`}>Years Served</td>
+          <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 items-center'>
+            <td className='hidden lg:block'></td>
+            <td onClick={() => handleSortClick('name')} 
+              className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>
+              Name
+            </td>
+            <td onClick={() => handleSortClick('party')} 
+              className={`hover:cursor-pointer ${chartData.sortBy === 'party' ? 'font-bold' : ''}`}>
+              Party
+            </td>
+            <td onClick={() => handleSortClick('state')} 
+              className={`hover:cursor-pointer ${chartData.sortBy === 'state' ? 'font-bold' : ''}`}>
+              State
+            </td>
+            <td onClick={() => handleSortClick('title')} 
+              className={`hidden md:block hover:cursor-pointer ${chartData.sortBy === 'title' ? 'font-bold' : ''}`}>
+              Title
+            </td>
+            <td onClick={() => handleSortClick('yearsServed')} 
+              className={`hidden lg:block hover:cursor-pointer ${chartData.sortBy === 'yearsServed' ? 'font-bold' : ''}`}>
+              Years Served
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -48,14 +63,14 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
               <img 
               src= {`https://congress-searcher-api.herokuapp.com/api/img/${cp.id}`}
               alt={cp.name}
-              className='h-32'
+              className='h-32 hidden lg:block'
               />
               </td>
             <td>{cp.name}</td>
             <td>{cp.party}</td>
             <td>{cp.state}</td>
-            <td>{cp.title}</td>
-            <td>{cp.yearsServed}</td>
+            <td className='hidden md:block'>{cp.title}</td>
+            <td className='hidden lg:block'>{cp.yearsServed}</td>
           </tr>)}
         </tbody>
       </table>
