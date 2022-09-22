@@ -33,7 +33,7 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
     <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center mx-auto w-full'>
         <thead>
           <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 items-center'>
-            <td className='hidden lg:block'></td>
+            <td className='hidden lg:block'> </td>
             <td onClick={() => handleSortClick('name')} 
               className={`hover:cursor-pointer ${chartData.sortBy === 'name' ? 'font-bold' : ''}`}>
               Name
