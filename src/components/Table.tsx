@@ -76,7 +76,7 @@ export const Table = ({congressData, chartData, setChartData}: TableProps) => {
           <tr className='p-4 border-b border-slate-200 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 items-center' key={cp.id}>
             <td className='hidden lg:block'>
               <img 
-              src= {`https://congress-searcher-api.herokuapp.com/api/img/${cp.id}`}
+              src= {`https://congress-searcher-api.onrender.com/api/img/${cp.id}`}
               alt={cp.name}
               className='h-32'
               />
